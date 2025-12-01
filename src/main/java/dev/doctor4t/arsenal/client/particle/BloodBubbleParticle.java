@@ -1,55 +1,32 @@
-package dev.doctor4t.arsenal.client.particle;
+package dev.doctor4t.arsenal.particle;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.doctor4t.arsenal.index.ArsenalParticles;
+import net.minecraft.network.RegistryByteBuf;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.util.dynamic.Codecs;
 
-public class BloodBubbleParticle extends SpriteBillboardParticle {
-    private final SpriteProvider spriteProvider;
+public record SweepParticleEffect(int baseColor, int shadowColor) implements ParticleEffect {
 
-    public BloodBubbleParticle(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
-        super(world, x, y, z, velocityX, velocityY, velocityZ);
-        this.spriteProvider = spriteProvider;
-        this.setSpriteForAge(spriteProvider);
-        this.scale *= 0.25f + this.random.nextFloat() * 0.50f;
-    }
+    public static final MapCodec<SweepParticleEffect> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Codecs.RGB.fieldOf("base").forGetter(SweepParticleEffect::baseColor),
+            Codecs.RGB.fieldOf("shadow").forGetter(SweepParticleEffect::shadowColor)
+    ).apply(instance, SweepParticleEffect::new));
+
+    public static final PacketCodec<RegistryByteBuf, SweepParticleEffect> PACKET_CODEC = PacketCodec.tuple(
+            PacketCodecs.INTEGER,
+            SweepParticleEffect::baseColor,
+            PacketCodecs.INTEGER,
+            SweepParticleEffect::shadowColor,
+            SweepParticleEffect::new
+    );
 
     @Override
-    public ParticleTextureSheet getType() {
-        return ParticleTextureSheet.PARTICLE_SHEET_LIT;
-    }
-
-    @Override
-    public void tick() {
-        this.setSpriteForAge(this.spriteProvider);
-        this.prevPosX = this.x;
-        this.prevPosY = this.y;
-        this.prevPosZ = this.z;
-        if (this.age++ >= this.maxAge) {
-            this.markDead();
-            return;
-        }
-        this.velocityY = 0;
-        this.move(this.velocityX, this.velocityY, this.velocityZ);
-        if (this.ascending && this.y == this.prevPosY) {
-            this.velocityX *= 1.1;
-            this.velocityZ *= 1.1;
-        }
-    }
-
-    @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<DefaultParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public Factory(SpriteProvider spriteProvider) {
-            this.spriteProvider = spriteProvider;
-        }
-
-        @Override
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new BloodBubbleParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
-        }
+    public ParticleType<?> getType() {
+        return ArsenalParticles.SWEEP_PARTICLE;
     }
 }

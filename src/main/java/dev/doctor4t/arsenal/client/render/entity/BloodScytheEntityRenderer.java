@@ -15,7 +15,7 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 public class BloodScytheEntityRenderer<T extends BloodScytheEntity> extends EntityRenderer<T> {
-    public static final Identifier TEXTURE = new Identifier(Arsenal.MOD_ID, "textures/entity/blood_scythe.png");
+    public static final Identifier TEXTURE = Identifier.of(Arsenal.MOD_ID, "textures/entity/blood_scythe.png");
 
     public BloodScytheEntityRenderer(EntityRendererFactory.Context context) {
         super(context);

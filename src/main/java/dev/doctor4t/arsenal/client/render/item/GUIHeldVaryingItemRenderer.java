@@ -27,7 +27,7 @@ public class GUIHeldVaryingItemRenderer implements BuiltinItemRendererRegistry.D
     private BakedModel worldWeaponModel;
 
     public GUIHeldVaryingItemRenderer(Identifier weaponId) {
-        this.id = new Identifier(weaponId.getNamespace(), weaponId.getPath() + "_renderer");
+        this.id = Identifier.of(weaponId.getNamespace(), weaponId.getPath() + "_renderer");
         this.weaponId = weaponId;
     }
 

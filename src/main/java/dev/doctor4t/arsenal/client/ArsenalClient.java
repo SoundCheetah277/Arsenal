@@ -42,7 +42,7 @@ public class ArsenalClient implements ClientModInitializer {
             ModelPredicateProviderRegistry.register(Arsenal.id(mode.name().toLowerCase(Locale.ROOT)), (stack, world, entity, seed) -> mode == currentMode ? 1.0F : 0.0F);
         }
 
-        ModelPredicateProviderRegistry.register(new Identifier("vanilla"), (stack, world, entity, seed) -> ArsenalConfig.CUSTOM_TRIDENT_RENDERING ? 0f : 1f);
+        ModelPredicateProviderRegistry.register(Identifier.of("vanilla"), (stack, world, entity, seed) -> ArsenalConfig.CUSTOM_TRIDENT_RENDERING ? 0f : 1f);
     }
 
     public static KeyBinding weaponKeybind;
@@ -53,7 +53,7 @@ public class ArsenalClient implements ClientModInitializer {
 
         // Register integrated resource pack
         FabricLoader.getInstance().getModContainer(Arsenal.MOD_ID).ifPresent(modContainer -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(new Identifier(Arsenal.MOD_ID, "classic"), modContainer, ResourcePackActivationType.NORMAL);
+            ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of(Arsenal.MOD_ID, "classic"), modContainer, ResourcePackActivationType.NORMAL);
         });
 
         // Built-in Item Renderers
