@@ -20,7 +20,7 @@ public interface ArsenalEnchantments {
 //    Enchantment HEFT = createEnchantment("heft", new HeftEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
 
     private static Enchantment createEnchantment(String name, Enchantment enchantment) {
-        ENCHANTMENTS.put(enchantment, new Identifier(Arsenal.MOD_ID, name));
+        ENCHANTMENTS.put(enchantment, Identifier.of(Arsenal.MOD_ID, name));
         return enchantment;
     }
 

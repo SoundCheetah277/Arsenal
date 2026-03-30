@@ -1,6 +1,5 @@
 package dev.doctor4t.arsenal.cca;
 
-import dev.onyxstudios.cca.api.v3.item.ItemComponent;
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 

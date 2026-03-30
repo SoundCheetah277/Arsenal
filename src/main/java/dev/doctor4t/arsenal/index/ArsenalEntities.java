@@ -24,7 +24,7 @@ public interface ArsenalEntities {
     EntityType<WeaponRackEntity> WEAPON_RACK = createEntity("weapon_rack", FabricEntityTypeBuilder.<WeaponRackEntity>create(SpawnGroup.MISC, WeaponRackEntity::new).dimensions(EntityDimensions.fixed(0.4F, 0.4F)).trackRangeChunks(10).trackedUpdateRate(Integer.MAX_VALUE).build());
 
     private static <T extends EntityType<? extends Entity>> T createEntity(String name, T entity) {
-        ENTITIES.put(entity, new Identifier(Arsenal.MOD_ID, name));
+        ENTITIES.put(entity, Identifier.of(Arsenal.MOD_ID, name));
         return entity;
     }
 
