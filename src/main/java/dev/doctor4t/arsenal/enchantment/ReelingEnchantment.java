@@ -6,6 +6,7 @@ import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Rarity;
 
 public class ReelingEnchantment extends Enchantment implements UniqueEnchantment {
     public ReelingEnchantment(Rarity weight, EquipmentSlot... slot) {

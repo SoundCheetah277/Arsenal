@@ -21,8 +21,8 @@ public class StunStatusEffect extends StatusEffect {
     }
 
     @Override
-    public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-        super.onRemoved(entity, attributes, amplifier);
+    public void onRemoved(AttributeContainer attributes) {
+        super.onRemoved(attributes);
     }
 
 
