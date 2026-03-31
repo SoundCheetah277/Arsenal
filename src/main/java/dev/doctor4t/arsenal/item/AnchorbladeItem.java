@@ -17,6 +17,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -42,7 +43,7 @@ import java.util.Random;
 
 public class AnchorbladeItem extends PickaxeItem implements CustomHitParticleItem, CustomHitSoundItem, ArsenalWeaponItem {
     public AnchorbladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
-        super(material, attackDamage, attackSpeed, settings);
+        super(material, settings);
     }
 
     @Override
@@ -83,7 +84,7 @@ public class AnchorbladeItem extends PickaxeItem implements CustomHitParticleIte
                 owner.arsenal$getAnchor(hand, reeling).setRecalled(user.getStackInHand(hand == Hand.MAIN_HAND ? Hand.OFF_HAND : Hand.MAIN_HAND).isOf(ArsenalItems.ANCHORBLADE));
                 return TypedActionResult.fail(stack);
             }
-            int riptide = EnchantmentHelper.getRiptide(stack);
+            int riptide = EnchantmentHelper.getLevel(Enchantments.RIPTIDE, stack);
             if (riptide <= 0 || user.isTouchingWaterOrRain()) {
                 if (!world.isClient) {
                     stack.damage(1, user, p -> p.sendToolBreakStatus(user.getActiveHand()));

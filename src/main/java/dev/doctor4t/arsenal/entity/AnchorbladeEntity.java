@@ -141,7 +141,7 @@ public class AnchorbladeEntity extends PersistentProjectileEntity {
         Entity hitEntity = entityHitResult.getEntity();
         float damage = 10F;
         if (hitEntity instanceof LivingEntity livingEntity) {
-            damage += EnchantmentHelper.getAttackDamage(this.getTrackedItem(), livingEntity.getGroup());
+            damage += EnchantmentHelper.getItemDamage(this.getTrackedItem(), livingEntity.getGroup());
         }
         Entity owner = this.getOwner();
         this.setDealtDamage(true);

@@ -45,8 +45,12 @@ public class GUIHeldVaryingItemRenderer implements BuiltinItemRendererRegistry.D
     public void reload(ResourceManager manager) {
         final MinecraftClient client = MinecraftClient.getInstance();
         this.itemRenderer = client.getItemRenderer();
-        this.inventoryWeaponModel = client.getBakedModelManager().getModel(new ModelIdentifier(this.weaponId.getNamespace(), this.weaponId.getPath() + "_gui", "inventory"));
-        this.worldWeaponModel = client.getBakedModelManager().getModel(new ModelIdentifier(this.weaponId.getNamespace(), this.weaponId.getPath() + "_handheld", "inventory"));
+        this.inventoryWeaponModel = client.getBakedModelManager().getModel(new ModelIdentifier(this.weaponId.getNamespace(),
+                this.weaponId.getPath() + "_gui",
+                "inventory"));
+        this.worldWeaponModel = client.getBakedModelManager().getModel(new ModelIdentifier(this.weaponId.getNamespace(),
+                this.weaponId.getPath() + "_handheld",
+                "inventory"));
     }
 
     @Override

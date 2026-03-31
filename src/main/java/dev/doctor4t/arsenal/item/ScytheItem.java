@@ -53,7 +53,7 @@ public class ScytheItem extends MiningToolItem implements CustomHitParticleItem,
             EntityAttributeModifier.Operation.ADD_VALUE);
 
     public ScytheItem(ToolMaterial material, float damage, float speed, Settings settings) {
-        super(damage, speed, material, BlockTags.HOE_MINEABLE, settings);
+        super(material, BlockTags.HOE_MINEABLE, settings);
     }
 
     @Override

@@ -33,20 +33,20 @@ public class Arsenal implements ModInitializer {
 
         ServerPlayNetworking.registerGlobalReceiver(SERVERBOUND_HOLD_WEAPON_PACKET, (server, player, handler, buf, responseSender) -> {
             boolean hold = buf.readBoolean();
-            BackWeaponComponent.setHoldingBackWeapon(player, hold);
+            BackWeaponComponent.setHoldingBackWeapon(player.player(), hold);
         });
 
         ServerPlayNetworking.registerGlobalReceiver(SERVERBOUND_SWAP_WEAPON_PACKET, (server, player, handler, buf, responseSender) -> {
             if (!player.isSpectator()) {
-                boolean toggled = BackWeaponComponent.isHoldingBackWeapon(player);
-                BackWeaponComponent.setHoldingBackWeapon(player, false);
-                ItemStack itemStack = BackWeaponComponent.getBackWeapon(player);
+                boolean toggled = BackWeaponComponent.isHoldingBackWeapon(player.player());
+                BackWeaponComponent.setHoldingBackWeapon(player.player(), false);
+                ItemStack itemStack = BackWeaponComponent.getBackWeapon(player.player());
                 boolean success = BackWeaponComponent.setBackWeapon(player, player.getStackInHand(Hand.MAIN_HAND));
                 if (success) {
                     player.setStackInHand(Hand.MAIN_HAND, itemStack);
                 }
                 player.clearActiveItem();
-                BackWeaponComponent.setHoldingBackWeapon(player, toggled);
+                BackWeaponComponent.setHoldingBackWeapon(player.player(), toggled);
             }
         });
 
@@ -57,8 +57,8 @@ public class Arsenal implements ModInitializer {
                     return;
                 }
                 Slot slot = player.currentScreenHandler.getSlot(slotId);
-                ItemStack itemStack = BackWeaponComponent.getBackWeapon(player);
-                boolean success = BackWeaponComponent.setBackWeapon(player, slot.getStack());
+                ItemStack itemStack = BackWeaponComponent.getBackWeapon(player.player());
+                boolean success = BackWeaponComponent.setBackWeapon(player.player(), slot.getStack());
                 if (success) {
                     slot.setStack(itemStack);
                 }
