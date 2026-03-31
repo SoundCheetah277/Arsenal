@@ -8,7 +8,7 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 public class BackWeaponComponent implements AutoSyncedComponent {
@@ -18,18 +18,6 @@ public class BackWeaponComponent implements AutoSyncedComponent {
 
     public BackWeaponComponent(PlayerEntity player) {
         this.player = player;
-    }
-
-    @Override
-    public void readFromNbt(@NotNull NbtCompound tag) {
-        this.backWeapon.setStack(0, ItemStack.fromNbt(tag.getCompound("backWeapon")));
-        this.holdingBackWeapon = tag.getBoolean("holdingBackWeapon");
-    }
-
-    @Override
-    public void writeToNbt(@NotNull NbtCompound tag) {
-        tag.put("backWeapon", this.backWeapon.getStack(0).writeNbt(new NbtCompound()));
-        tag.putBoolean("holdingBackWeapon", this.holdingBackWeapon);
     }
 
     public ItemStack getBackWeapon() {
@@ -79,5 +67,17 @@ public class BackWeaponComponent implements AutoSyncedComponent {
             return;
         }
         ArsenalComponents.BACK_WEAPON_COMPONENT.get(player).setHoldingBackWeapon(holdingBackWeapon);
+    }
+
+    @Override
+    public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
+        this.backWeapon.setStack(0, ItemStack.fromNbt(nbtCompound.getCompound("backWeapon")));
+        this.holdingBackWeapon = nbtCompound.getBoolean("holdingBackWeapon");
+    }
+
+    @Override
+    public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
+        nbtCompound.put("backWeapon", this.backWeapon.getStack(0).writeToNbt(new NbtCompound()));
+        nbtCompound.putBoolean("holdingBackWeapon", this.holdingBackWeapon);
     }
 }

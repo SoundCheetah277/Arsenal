@@ -5,15 +5,18 @@ import dev.doctor4t.arsenal.index.ArsenalItems;
 import dev.doctor4t.arsenal.index.ArsenalStatusEffects;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.registry.RegistryWrapper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class ArsenalLangGen extends FabricLanguageProvider {
 
-    protected ArsenalLangGen(FabricDataOutput dataOutput) {
-        super(dataOutput);
+    protected ArsenalLangGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        super(dataOutput, registryLookup);
     }
 
     @Override
-    public void generateTranslations(TranslationBuilder builder) {
+    public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder builder) {
         builder.add(ArsenalItems.ANCHORBLADE, "Anchorblade");
         builder.add(ArsenalEntities.ANCHORBLADE, "Anchorblade");
         builder.add(ArsenalItems.SCYTHE, "Scythe");

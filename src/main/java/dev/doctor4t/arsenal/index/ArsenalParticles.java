@@ -8,8 +8,8 @@ import dev.doctor4t.arsenal.client.particle.SweepAttackParticle;
 import dev.doctor4t.arsenal.client.particle.type.SweepParticleType;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -22,9 +22,9 @@ public interface ArsenalParticles {
 
     SweepParticleType SWEEP_PARTICLE = create("sweep", new SweepParticleType(true));
     SweepParticleType SWEEP_SHADOW_PARTICLE = create("sweep_shadow", new SweepParticleType(true));
-    DefaultParticleType BLOOD_BUBBLE = create("blood_bubble", FabricParticleTypes.simple(true));
-    DefaultParticleType BLOOD_BUBBLE_SPLATTER = create("blood_bubble_splatter", FabricParticleTypes.simple(true));
-    DefaultParticleType SHOCKWAVE = create("shockwave", FabricParticleTypes.simple(true));
+    SimpleParticleType BLOOD_BUBBLE = create("blood_bubble", FabricParticleTypes.simple(true));
+    SimpleParticleType BLOOD_BUBBLE_SPLATTER = create("blood_bubble_splatter", FabricParticleTypes.simple(true));
+    SimpleParticleType SHOCKWAVE = create("shockwave", FabricParticleTypes.simple(true));
 
     static void initialize() {
         PARTICLES.keySet().forEach(particle -> Registry.register(Registries.PARTICLE_TYPE, PARTICLES.get(particle), particle));

@@ -1,16 +1,17 @@
 package dev.doctor4t.arsenal.index;
 
-import net.fabricmc.yarn.constants.MiningLevels;
+import net.minecraft.block.Block;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
 
 public enum ArsenalToolMaterials implements ToolMaterial {
-    SCYTHE(MiningLevels.NETHERITE, 2031, 9.0F, 4.0F, 28, () -> Ingredient.ofItems(Items.IRON_INGOT)),
-    ANCHORBLADE(MiningLevels.NETHERITE, 2031, 9.0F, 4.0F, 28, () -> Ingredient.ofItems(Items.IRON_INGOT));
+    SCYTHE(4, 2031, 9.0F, 4.0F, 28, () -> Ingredient.ofItems(Items.IRON_INGOT)),
+    ANCHORBLADE(4, 2031, 9.0F, 4.0F, 28, () -> Ingredient.ofItems(Items.IRON_INGOT));
 
     private final int miningLevel;
     private final int itemDurability;
@@ -44,9 +45,14 @@ public enum ArsenalToolMaterials implements ToolMaterial {
     }
 
     @Override
-    public int getMiningLevel() {
-        return this.miningLevel;
+    public TagKey<Block> getInverseTag() {
+        return null;
     }
+
+//    @Override
+//    public int getMiningLevel() {
+//        return this.miningLevel;
+//    }
 
     @Override
     public int getEnchantability() {

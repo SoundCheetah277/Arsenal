@@ -47,7 +47,10 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class ScytheItem extends MiningToolItem implements CustomHitParticleItem, CustomHitSoundItem, ArsenalWeaponItem {
-    private static final EntityAttributeModifier REACH_MODIFIER = new EntityAttributeModifier(UUID.fromString("911af262-067d-4da2-854c-20f03cc2dd8b"), "Weapon modifier", 0.5, EntityAttributeModifier.Operation.ADDITION);
+    private static final EntityAttributeModifier REACH_MODIFIER = new EntityAttributeModifier(UUID.fromString("911af262-067d-4da2-854c-20f03cc2dd8b"),
+            "Weapon modifier",
+            0.5,
+            EntityAttributeModifier.Operation.ADD_VALUE);
 
     public ScytheItem(ToolMaterial material, float damage, float speed, Settings settings) {
         super(damage, speed, material, BlockTags.HOE_MINEABLE, settings);
@@ -55,7 +58,7 @@ public class ScytheItem extends MiningToolItem implements CustomHitParticleItem,
 
     @Override
     public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        Multimap<EntityAttribute, EntityAttributeModifier> map = LinkedHashMultimap.create(super.getAttributeModifiers(slot));
+        Multimap<EntityAttribute, EntityAttributeModifier> map = LinkedHashMultimap.create();
         if (slot == EquipmentSlot.MAINHAND) {
             map.put(ReachEntityAttributes.ATTACK_RANGE, REACH_MODIFIER);
         }
@@ -107,7 +110,12 @@ public class ScytheItem extends MiningToolItem implements CustomHitParticleItem,
                 ArrayList<StatusEffectInstance> statusEffectsHalved = new ArrayList<>();
                 float absorption = player.getAbsorptionAmount();
                 for (StatusEffectInstance statusEffect : player.getStatusEffects()) {
-                    StatusEffectInstance statusHalved = new StatusEffectInstance(statusEffect.getEffectType(), statusEffect.getDuration() / 2, statusEffect.getAmplifier(), statusEffect.isAmbient(), statusEffect.shouldShowParticles(), statusEffect.shouldShowIcon());
+                    StatusEffectInstance statusHalved = new StatusEffectInstance(statusEffect.getEffectType(),
+                            statusEffect.getDuration() / 2,
+                            statusEffect.getAmplifier(),
+                            statusEffect.isAmbient(),
+                            statusEffect.shouldShowParticles(),
+                            statusEffect.shouldShowIcon());
                     bloodScythe.addEffect(statusHalved);
                     statusEffectsHalved.add(statusHalved);
                 }
@@ -130,7 +138,11 @@ public class ScytheItem extends MiningToolItem implements CustomHitParticleItem,
                     }
 
                     Pair<Integer, Integer> colorPair = new Pair<>(skin.color, skin.shadowColor);
-                    SweepParticleUtil.sendSweepPacketToClient(serverWorld, colorPair, player.getX() + -MathHelper.sin((float) (player.getYaw() * (Math.PI / 180F))), player.getBodyY(0.5D), player.getZ() + MathHelper.cos((float) (player.getYaw() * (Math.PI / 180F))));
+                    SweepParticleUtil.sendSweepPacketToClient(serverWorld,
+                            colorPair,
+                            player.getX() + -MathHelper.sin((float) (player.getYaw() * (Math.PI / 180F))),
+                            player.getBodyY(0.5D),
+                            player.getZ() + MathHelper.cos((float) (player.getYaw() * (Math.PI / 180F))));
                 }
             }
             world.playSound(null, player.getX(), player.getY(), player.getZ(), ArsenalSounds.ITEM_SCYTHE_SPEWING, SoundCategory.PLAYERS, 1.0f, 1.0f);
@@ -171,7 +183,11 @@ public class ScytheItem extends MiningToolItem implements CustomHitParticleItem,
             }
 
             Pair<Integer, Integer> colorPair = new Pair<>(skin.color, skin.shadowColor);
-            SweepParticleUtil.sendSweepPacketToClient(serverWorld, colorPair, player.getX() + -MathHelper.sin((float) (player.getYaw() * (Math.PI / 180F))), player.getBodyY(0.5D), player.getZ() + MathHelper.cos((float) (player.getYaw() * (Math.PI / 180F))));
+            SweepParticleUtil.sendSweepPacketToClient(serverWorld,
+                    colorPair,
+                    player.getX() + -MathHelper.sin((float) (player.getYaw() * (Math.PI / 180F))),
+                    player.getBodyY(0.5D),
+                    player.getZ() + MathHelper.cos((float) (player.getYaw() * (Math.PI / 180F))));
         }
     }
 

@@ -2,10 +2,11 @@ package dev.doctor4t.arsenal.cca;
 
 import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
+import org.ladysnake.cca.api.v3.component.Component;
 
 import java.util.UUID;
 
-public class WeaponOwnerComponent extends ItemComponent {
+public class WeaponOwnerComponent implements Component {
     private static final String OWNER = "owner";
 
     public WeaponOwnerComponent(ItemStack stack) {
