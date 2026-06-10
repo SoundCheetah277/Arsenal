@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-
+/*
 public class GUIHeldVaryingItemRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer, SimpleSynchronousResourceReloadListener {
     private static final Set<ModelTransformationMode> inventoryModes = Set.of(ModelTransformationMode.GUI, ModelTransformationMode.GROUND);
     private final Identifier id;
@@ -68,4 +68,4 @@ public class GUIHeldVaryingItemRenderer implements BuiltinItemRendererRegistry.D
             this.itemRenderer.renderItem(stack, mode, leftHanded, matrices, vertexConsumers, light, overlay, this.worldWeaponModel);
         }
     }
-}
+}*/

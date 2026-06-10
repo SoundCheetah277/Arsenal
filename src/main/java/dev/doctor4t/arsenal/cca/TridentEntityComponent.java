@@ -5,7 +5,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
-
+/*
 public class TridentEntityComponent implements AutoSyncedComponent, CommonTickingComponent {
     public TridentEntity tridentEntity;
     private boolean isDropped;
@@ -52,4 +52,4 @@ public class TridentEntityComponent implements AutoSyncedComponent, CommonTickin
         nbtCompound.putBoolean("isdropped",isDropped);
         nbtCompound.putInt("slotdroppedfrom",slotDroppedFrom);
     }
-}
+}*/

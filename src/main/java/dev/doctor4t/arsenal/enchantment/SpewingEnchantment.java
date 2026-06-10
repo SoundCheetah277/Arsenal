@@ -2,12 +2,12 @@ package dev.doctor4t.arsenal.enchantment;
 
 import dev.doctor4t.arsenal.index.ArsenalItems;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
+//import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Rarity;
-
+/*
 public class SpewingEnchantment extends Enchantment implements UniqueEnchantment {
     public SpewingEnchantment(Rarity weight, EquipmentSlot... slot) {
         super(weight, EnchantmentTarget.WEAPON, slot);
@@ -32,4 +32,4 @@ public class SpewingEnchantment extends Enchantment implements UniqueEnchantment
     public boolean isAcceptableItem(ItemStack stack) {
         return stack.isOf(ArsenalItems.SCYTHE) || stack.isOf(Items.BOOK) || stack.isOf(Items.ENCHANTED_BOOK);
     }
-}
+}*/

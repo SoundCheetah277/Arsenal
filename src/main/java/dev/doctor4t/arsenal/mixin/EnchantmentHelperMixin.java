@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.stream.Stream;
-
+/*
 @Mixin(EnchantmentHelper.class)
 public class EnchantmentHelperMixin {
     @Inject(method = "getPossibleEntries", at = @At("RETURN"), cancellable = true)
@@ -31,4 +31,4 @@ public class EnchantmentHelperMixin {
             cir.setReturnValue(possibleEntries);
         }
     }
-}
+}*/
